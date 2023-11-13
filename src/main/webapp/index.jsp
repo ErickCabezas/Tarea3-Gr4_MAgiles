@@ -5,34 +5,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP-Inicio de sesión</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+
 </head>
 <body>
+
 <div id="cuadro">
 
-<form action="LoginServlet" method="POST">
-    <p id="titulo">INICIAR SESIÓN</p>
-<hr>
-<br><br>
-    <label id="subtitulo1">NOMBRE DE USUARIO</label>
-    <br><br>
-    <input type="text" class="entrada" name="user"/>
-    <br><br>
-    <label id="subtitulo2">CONTRASEÑA</label>
-    <br><br>
-    <input type="password" class="entrada" name="key"/>
-    <br><br>
-    <input type="submit" value="Iniciar sesión" id="boton"/>
-</form>
+    <form action="LoginServlet" method="POST">
+        <h1 id="titulo">INICIAR SESIÓN</h1>
+        <br>
+        <div class="nombreUsuario">
+            <label id="subtitulo1">NOMBRE DE USUARIO</label>
+            <br><br>
+            <input type="text" class="entrada" name="user"/>
+            <br><br>
+            <br>
+            <div class="Contraseña">
+                <label id="subtitulo2">CONTRASEÑA</label>
+                <br><br>
+                <input type="password" class="entrada" name="key"/>
+                <br><br>
+            </div>
+
+        </div>
+
+
+        <input type="submit" value="Iniciar sesión" id="boton"/>
+
+    </form>
 
     <form action="LoginServlet" method="GET">
         <br>
-        <button type="submit"> Registrarse </button>
+        <div class="btnRegistro">
+            <button type="submit"> Registrarse</button>
+        </div>
+
     </form>
 
     <br>
-<p id="marca">GR-4</p>
+    <p id="marca">GR-4</p>
 </div>
 </body>
 </html>
