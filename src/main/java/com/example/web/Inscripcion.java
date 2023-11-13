@@ -1,6 +1,6 @@
 package com.example.web;
 
-public class Inscripcion {
+public abstract class Inscripcion {
     private Usuario usuario;
     private String fechaInscripcion;
     private String horario;
