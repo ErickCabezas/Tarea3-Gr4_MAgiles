@@ -6,6 +6,7 @@
 <html>
 <head>
     <title>JSP-Inicio de sesión</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 <div id="cuadro">
