@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(name="CuentaServlet", urlPatterns = {"/CuentaServlet"})
 public class CuentaServlet extends HttpServlet {
-    private Gestor_Usuario gestor_usuario=new Gestor_Usuario();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.sendRedirect("calificar.jsp");
@@ -22,9 +22,9 @@ public class CuentaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Usuario user= (Usuario) req.getSession().getAttribute("loginUser");;
         HttpSession misesion= req.getSession();
-        misesion.setAttribute("userMatricula",user );
+        System.out.println(LoginServlet.usuario.getCi());
+        misesion.setAttribute("userMatricula",LoginServlet.usuario );
         resp.sendRedirect("matricula.jsp");
     }
 }

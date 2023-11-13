@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Datos del Estudiante</h1>
-<form action="RegistroServlet" method="POST">
+<form action="CalificarServlet" method="POST">
     <p><label>Usuario del estudiante:</label><input type="text" name="usuario"></p>
     <p><label>Nivel:</label><input type="text" name="nivel"></p>
     <button type="submit"> Guardar </button>
@@ -20,7 +20,7 @@
 <br>
 <%
     String calificado = ".....";
-    calificado=(String) request.getSession().getAttribute("Error");
+    calificado=(String) request.getSession().getAttribute("Notificacion");
 %>
 <p><%=calificado%></p>
 <br>

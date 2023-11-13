@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @WebServlet(name="RegistroServlet", urlPatterns = {"/RegistroServlet"})
 public class RegistroServlet extends HttpServlet {
-private Gestor_Usuario gestor_usuario = new Gestor_Usuario();
+
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
@@ -24,7 +24,7 @@ private Gestor_Usuario gestor_usuario = new Gestor_Usuario();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession misesion= req.getSession();
-        misesion.setAttribute("listaUsuarios", gestor_usuario.getListaUsuarios());
+        misesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getListaUsuarios());
         resp.sendRedirect("mostrarUsuarios.jsp");
     }
 
@@ -38,9 +38,8 @@ private Gestor_Usuario gestor_usuario = new Gestor_Usuario();
         String tel = req.getParameter("telf");
         String usuario= req.getParameter("user");
         String key = req.getParameter("key");
-        String agregado= gestor_usuario.agregarUsuario(
+        String agregado= LoginServlet.gestor_usuario.agregarUsuario(
                  new Usuario(nombre,apellido,ci,correo,modo,tel,usuario,key));
-        LoginServlet.gestor_usuario=gestor_usuario;
         HttpSession misesion= req.getSession();
         misesion.setAttribute("registro", agregado);
         resp.sendRedirect("registro.jsp");

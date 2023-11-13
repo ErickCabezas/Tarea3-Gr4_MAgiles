@@ -15,7 +15,8 @@ import com.example.web.Usuario;
 @WebServlet(name="LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
-    public static Gestor_Usuario gestor_usuario;
+    public static Gestor_Usuario gestor_usuario=new Gestor_Usuario();
+    public static Usuario usuario;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +36,7 @@ public class LoginServlet extends HttpServlet {
         if(ver){
             HttpSession misesion= req.getSession();
             misesion.setAttribute("loginUser",user);
+            LoginServlet.usuario=user;
             resp.sendRedirect("cuentaUser.jsp");
         }else{
             HttpSession misesion= req.getSession();
