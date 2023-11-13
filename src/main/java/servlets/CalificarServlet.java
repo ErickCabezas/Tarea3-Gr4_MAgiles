@@ -19,14 +19,14 @@ public class CalificarServlet extends HttpServlet {
         String usuario= req.getParameter("usuario");
         int nivel= Integer.parseInt(req.getParameter("nivel")) ;
         Usuario user=LoginServlet.gestor_usuario.buscarUsuario(usuario);
-        System.out.println(user);
+
         if(user!=null){
             if(nivel==0){
                 HttpSession misesion = req.getSession();
                 misesion.setAttribute("Notificacion", "Seleccione nivel segun la calificación");
                 resp.sendRedirect("calificar.jsp");
             }else {
-                user.getInscripcion().nivel = nivel;
+                user.getInscripcion().nivel=nivel;
                 HttpSession misesion = req.getSession();
                 misesion.setAttribute("Notificacion", "usuario calificado");
                 resp.sendRedirect("calificar.jsp");

@@ -14,13 +14,13 @@
 <h1>Datos del Estudiante</h1>
 <form action="CalificarServlet" method="POST">
     <p><label>Usuario del estudiante:</label><input type="text" name="usuario"></p>
-    <p><b>Nivel:</b></p>
+    <p><b>Seleccione el nivel del estudiante:</b></p>
     <select name="nivel">
         <option value="0" selected>.....</option>
-        <option value="1">7-9</option>
-        <option value="2">9-11</option>
-        <option value="3">11-13</option>
-        <option value="4">14-16</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
     </select>
     <button type="submit"> Guardar </button>
 </form>

@@ -8,8 +8,8 @@ public class Gestor_Usuario {
 
     public Gestor_Usuario() {
         this.listaUsuarios = new ArrayList<>();
-        listaUsuarios.add(new Usuario("marce","cab","12312","damsdm@dsad.com","09923","prof","mardix","123"));
-        listaUsuarios.add(new Usuario("a","b","12312","damsdm@dsad.com","09923","prof","mardix","123"));
+        listaUsuarios.add(new Usuario("marce","cab","12312","damsdm@dsad.com","09923","estudiante","mardix","123"));
+        listaUsuarios.add(new Usuario("a","b","12312","damsdm@dsad.com","09923","profesor","andres","123"));
         listaUsuarios.add(new Usuario("c","d","12312","damsdm@dsad.com","09923","prof","mardix","123"));
         listaUsuarios.add(new Usuario("e","f","12312","damsdm@dsad.com","09923","prof","mardix","123"));
         listaUsuarios.add(new Usuario("g","h","12312","damsdm@dsad.com","09923","prof","mardix","123"));

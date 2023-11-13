@@ -31,7 +31,7 @@
 <p><b> telefono :</b><%=usuario.getTelefono()%></p>
 <br>
 <br>
-<p><b> Nivel :</b><%=usuario.getNivel()%></p>
+<p><b> Nivel :</b><%=usuario.getInscripcion().nivel%></p>
 <br>
 <form action="CuentaServlet" method="POST">
     <br>

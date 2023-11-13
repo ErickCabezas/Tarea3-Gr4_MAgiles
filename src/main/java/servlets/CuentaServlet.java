@@ -23,7 +23,6 @@ public class CuentaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession misesion= req.getSession();
-        System.out.println(LoginServlet.usuario.getCi());
         misesion.setAttribute("userMatricula",LoginServlet.usuario );
         resp.sendRedirect("matricula.jsp");
     }

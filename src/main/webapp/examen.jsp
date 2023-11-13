@@ -11,6 +11,7 @@
     <title>Examen ubicacion</title>
 </head>
 <body>
+<h1><b>Examen de ubicación</b></h1>
 <form action="ExamenServlet" method="POST">
     <%
         Usuario user = (Usuario) request.getSession().getAttribute("userMatricula");
@@ -28,6 +29,7 @@
         <option value="16-18">16-18</option>
         <option value="18-20">18-20</option>
     </select>
+    <button type="submit"> Guardar </button>
 </form>
 <br>
 <%

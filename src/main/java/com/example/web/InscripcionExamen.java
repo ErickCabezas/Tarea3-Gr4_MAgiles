@@ -5,6 +5,10 @@ import java.time.LocalDate;
 public class InscripcionExamen extends Inscripcion{
     private double nota;
 
+    public InscripcionExamen() {
+        super.nivel=0;
+    }
+
     public InscripcionExamen(String horario) {
         super.horario=horario;
     }

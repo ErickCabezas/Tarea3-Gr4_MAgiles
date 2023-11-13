@@ -22,6 +22,7 @@ public class MatriculaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Usuario user=LoginServlet.usuario;
+        int nivel=user.getInscripcion().nivel;
         String horario = req.getParameter("horario");
         String fechaIni= String.valueOf(LocalDate.now().plusMonths(1));
         String fechaFin= String.valueOf(LocalDate.now().plusMonths(4));
@@ -34,22 +35,22 @@ public class MatriculaServlet extends HttpServlet {
                 resp.sendRedirect("matricula.jsp");
             }else {
                 if (horario.equalsIgnoreCase("7-9")) {
-                    user.setInscripcion(new InscripcionCurso(101, fechaIni, fechaFin, horario, 300));
+                    user.setInscripcion(new InscripcionCurso(101, fechaIni, fechaFin, horario, 300, nivel));
                 }
                 if (horario.equalsIgnoreCase("9-11")) {
-                    user.setInscripcion(new InscripcionCurso(102, fechaIni, fechaFin, horario, 300));
+                    user.setInscripcion(new InscripcionCurso(102, fechaIni, fechaFin, horario, 300, nivel));
                 }
                 if (horario.equalsIgnoreCase("11-13")) {
-                    user.setInscripcion(new InscripcionCurso(103, fechaIni, fechaFin, horario, 300));
+                    user.setInscripcion(new InscripcionCurso(103, fechaIni, fechaFin, horario, 300, nivel));
                 }
                 if (horario.equalsIgnoreCase("14-16")) {
-                    user.setInscripcion(new InscripcionCurso(104, fechaIni, fechaFin, horario, 300));
+                    user.setInscripcion(new InscripcionCurso(104, fechaIni, fechaFin, horario, 300, nivel));
                 }
                 if (horario.equalsIgnoreCase("16-18")) {
-                    user.setInscripcion(new InscripcionCurso(105, fechaIni, fechaFin, horario, 300));
+                    user.setInscripcion(new InscripcionCurso(105, fechaIni, fechaFin, horario, 300, nivel));
                 }
                 if (horario.equalsIgnoreCase("18-20")) {
-                    user.setInscripcion(new InscripcionCurso(106, fechaIni, fechaFin, horario, 300));
+                    user.setInscripcion(new InscripcionCurso(106, fechaIni, fechaFin, horario, 300, nivel));
                 }
                 notifica=user.getInscripcion().inscribir();
                 HttpSession misesion= req.getSession();

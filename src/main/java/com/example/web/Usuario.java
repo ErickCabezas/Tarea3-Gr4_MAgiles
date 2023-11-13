@@ -18,8 +18,8 @@ public class Usuario {
         this.correo=correo;
         this.telefono = telefono;
         this.modoUsuario = modoUsuario;
-        this.login= new Login(user,key);
-
+        this.login=new Login(user, key);
+        this.inscripcion= new InscripcionExamen();
     }
 
     public String getApellido() {

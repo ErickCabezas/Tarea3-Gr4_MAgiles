@@ -6,7 +6,8 @@ public class InscripcionCurso extends Inscripcion{
     private String fechaInicio, fechaFin;
     private double costo;
 
-    public InscripcionCurso(int aula,String fechaInicio,String fechaFin,String horario, double costo) {
+    public InscripcionCurso(int aula,String fechaInicio,String fechaFin,String horario, double costo, int nivel) {
+        super.nivel=nivel;
         super.horario=horario;
         this.aula=aula;
         this.fechaInicio=fechaInicio;
@@ -19,7 +20,6 @@ public class InscripcionCurso extends Inscripcion{
         if(super.nivel==0){
           return "Dar prueba de ubicación";
         }else{
-            super.usuario.setInscripcion(this);
             return "Estudiante inscrito-"+pagar();
         }
     }

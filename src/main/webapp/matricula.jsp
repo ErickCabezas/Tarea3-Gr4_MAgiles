@@ -29,6 +29,7 @@
         <option value="16-18">16-18</option>
         <option value="18-20">18-20</option>
     </select>
+    <button type="submit"> Guardar </button>
 </form>
 <br>
 <%

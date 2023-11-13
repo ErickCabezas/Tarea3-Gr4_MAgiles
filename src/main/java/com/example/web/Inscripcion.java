@@ -4,9 +4,10 @@ public abstract class Inscripcion {
     public Usuario usuario;
     public String fechaInscripcion;
     public String horario;
-    public int nivel=0;
+    public int nivel;
 
     public String inscribir() {
         return "";
     }
+
 }
