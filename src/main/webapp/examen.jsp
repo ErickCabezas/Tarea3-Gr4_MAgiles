@@ -1,25 +1,24 @@
 <%@ page import="com.example.web.Usuario" %><%--
   Created by IntelliJ IDEA.
   User: erick cabezas
-  Date: 11/11/2023
-  Time: 21:45
+  Date: 12/11/2023
+  Time: 22:56
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>MATRICULA</title>
+    <title>Examen ubicacion</title>
 </head>
 <body>
-<h1><b>EMPIEZA CON TU MATRICULA</b></h1>
-<form action="MatriculaServlet" method="POST">
+<form action="ExamenServlet" method="POST">
     <%
         Usuario user = (Usuario) request.getSession().getAttribute("userMatricula");
     %>
     <p><b>Hola <%=user.getNombre()%>  <%=user.getApellido()%> </b></p>
     <p>User: <%= user.getLogin().getUsuario()%></p>
     <p><b>--------------------------------------------</b></p>
-    <p><b>Seleccione el horarario al que se quiere matricular</b></p>
+    <p><b>Seleccione el horarario del examen de ubicación</b></p>
     <select name="horario">
         <option value="0" selected>.....</option>
         <option value="7-9">7-9</option>

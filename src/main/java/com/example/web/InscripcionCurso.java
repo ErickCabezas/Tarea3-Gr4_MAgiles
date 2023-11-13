@@ -6,21 +6,33 @@ public class InscripcionCurso extends Inscripcion{
     private String fechaInicio, fechaFin;
     private double costo;
 
-    @Override
-    public void inscribir() {
-        super.inscribir();
+    public InscripcionCurso(int aula,String fechaInicio,String fechaFin,String horario, double costo) {
+        super.horario=horario;
+        this.aula=aula;
+        this.fechaInicio=fechaInicio;
+        this.fechaFin=fechaFin;
+        this.costo=costo;
+    }
 
+    @Override
+    public String inscribir () {
+        if(super.nivel==0){
+          return "Dar prueba de ubicación";
+        }else{
+            super.usuario.setInscripcion(this);
+            return "Estudiante inscrito-"+pagar();
+        }
     }
 
     public double getCosto() {
         return costo;
     }
 
-    public void getInfo(){
-
+    public void setProfesor(Usuario profesor) {
+        this.profesor = profesor;
     }
 
-    public void pagar(){
-
+    public String pagar(){
+      return "Total del curso"+this.getCosto();
     }
 }

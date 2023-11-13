@@ -20,7 +20,6 @@ public class Usuario {
         this.modoUsuario = modoUsuario;
         this.login= new Login(user,key);
 
-        this.nivel=0;
     }
 
     public String getApellido() {
@@ -51,11 +50,11 @@ public class Usuario {
         return ci;
     }
 
-    public int getNivel() {
-        return nivel;
+    public Inscripcion getInscripcion() {
+        return inscripcion;
     }
 
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
+    public void setInscripcion(Inscripcion inscripcion) {
+        this.inscripcion = inscripcion;
     }
 }
