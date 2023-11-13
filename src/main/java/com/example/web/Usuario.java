@@ -9,6 +9,7 @@ public class Usuario {
     private String modoUsuario;
     private Login login;
     private int nivel;
+    private Inscripcion inscripcion;
 
     public Usuario(String nombre, String apellido, String ci, String correo, String modoUsuario, String telefono, String user, String key) {
         this.apellido = apellido;
@@ -18,6 +19,7 @@ public class Usuario {
         this.telefono = telefono;
         this.modoUsuario = modoUsuario;
         this.login= new Login(user,key);
+
         this.nivel=0;
     }
 
