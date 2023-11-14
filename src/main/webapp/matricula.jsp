@@ -32,6 +32,10 @@
     <button type="submit"> Guardar </button>
 </form>
 <br>
+<form action="MatriculaServlet" method="GET">
+    <button type="submit"> regresar </button>
+</form>
+<br>
 <%
     String notificacion = ".....";
     notificacion=(String) request.getSession().getAttribute("noti");

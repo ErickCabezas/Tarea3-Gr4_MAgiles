@@ -16,7 +16,12 @@ public class CuentaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("calificar.jsp");
+        String opc=req.getParameter("opc");
+        if(opc.equalsIgnoreCase("cerrar")){
+            resp.sendRedirect("index.jsp");
+        }else{
+            resp.sendRedirect("calificar.jsp");
+        }
     }
 
 
