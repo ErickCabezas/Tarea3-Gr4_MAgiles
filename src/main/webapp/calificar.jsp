@@ -25,6 +25,9 @@
     <button type="submit"> Guardar </button>
 </form>
 <br>
+<form action="CalificarServlet" method="GET">
+    <button type="submit"> Home </button>
+</form>
 <%
     String calificado = ".....";
     calificado=(String) request.getSession().getAttribute("Notificacion");

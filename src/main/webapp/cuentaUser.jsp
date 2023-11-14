@@ -15,14 +15,11 @@
 <%
     Usuario usuario = (Usuario) request.getSession().getAttribute("loginUser");
 %>
-
 <p><b> Modo :</b><%=usuario.getModoUsuario()%></p>
 <br>
 <p><b>Usuario :</b><%=usuario.getLogin().getUsuario()%></p>
 <br>
-<p><b>Nombre :</b><%=usuario.getNombre()%></p>
-<br>
-<p><b>Apellido :</b><%=usuario.getApellido()%></p>
+<p><b>Nombre completo:</b><%=usuario.getNombre()%> <%=usuario.getApellido()%></p>
 <br>
 <p><b> ci :</b><%=usuario.getCi()%></p>
 <br>
@@ -30,21 +27,23 @@
 <br>
 <p><b> telefono :</b><%=usuario.getTelefono()%></p>
 <br>
-<br>
 <p><b> Nivel :</b><%=usuario.getInscripcion().nivel%></p>
-<br>
-<form action="CuentaServlet" method="POST">
-    <br>
-    <button type="submit"> Inscribirse en curso </button>
-</form>
 <%
     if(usuario.getModoUsuario().equals("profesor")){
 %>
 <br>
 <form action="CuentaServlet" method="GET">
-    <br>
-    <button type="submit"> calificar </button>
+    <button type="submit" name="opc" value="calificar"> calificar </button>
+</form>
+<%}else{%>
+<br>
+<form action="CuentaServlet" method="POST">
+    <button type="submit"> Inscribirse en curso </button>
 </form>
 <%}%>
+<br>
+<form action="CuentaServlet" method="GET">
+    <button type="submit" name="opc" value="cerrar"> cerrar sesión </button>
+</form>
 </body>
 </html>
