@@ -22,20 +22,42 @@
             <p><label>Telefono:</label><input type="text" name="telf"></p>
             <p><label>Usuario:</label><input type="text" name="user"></p>
             <p><label>Contraseña:</label><input type="text" name="key"></p>
-            <p><b>Tipo de usuario:</b>
-                <input type="radio" name="tipoUser" value="estudiante"/>Estudiante
-                <input type="radio" name="tipoUser" value="profesor"/>Profesor</p><br>
         </div>
-        <button type="submit"> Registrarse</button>
+        <div class="contenedorRadioButton">
+            <p><label>Tipo de usuario:</label></p>
+            <div class="grupoRadioButton">
+                <input type="radio" name="tipoUser" id="estudiante" value="estudiante"/>Estudiante
+            </div>
+            <div class="grupoRadioButton">
+                <input type="radio" name="tipoUser" value="profesor"/>Profesor<br>
+            </div>
+
+        </div>
+        <div class="btnRegistrarse">
+            <button type="submit"> Registrarse</button>
+        </div>
+        <div class="btnRegresarLogin">
+            <button type="submit"> Regresar</button>
+        </div>
     </form>
     <br>
-    <%
-        String agregado = ".....";
-        agregado = (String) request.getSession().getAttribute("registro");
-    %>
-    <p><%=agregado%>
-    </p>
-    <br>
+    <div class="txtAgregado">
+        <%
+            String agregado = ".....";
+            agregado = (String) request.getSession().getAttribute("registro");
+        %>
+
+
+        <%
+            if (agregado != null) {
+        %>
+        <p id="usuarioEsRegistrado"><%=agregado%></p>
+        <%}%>
+
+        <br>
+
+    </div>
+
 
 </div>
 

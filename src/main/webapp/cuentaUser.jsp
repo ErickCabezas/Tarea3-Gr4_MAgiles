@@ -9,41 +9,68 @@
 <html>
 <head>
     <title>Cuenta Cambrige</title>
+    <br>
+    <link rel="stylesheet" href="hojaDeEstilos/stylesCuentaUsuario.css">
 </head>
 <body>
-<h1><b>BIENBENIDO A CAMBRIGE</b></h1>
-<%
-    Usuario usuario = (Usuario) request.getSession().getAttribute("loginUser");
-%>
-<p><b> Modo :</b><%=usuario.getModoUsuario()%></p>
-<br>
-<p><b>Usuario :</b><%=usuario.getLogin().getUsuario()%></p>
-<br>
-<p><b>Nombre completo:</b><%=usuario.getNombre()%> <%=usuario.getApellido()%></p>
-<br>
-<p><b> ci :</b><%=usuario.getCi()%></p>
-<br>
-<p><b> correo :</b><%=usuario.getCorreo()%></p>
-<br>
-<p><b> telefono :</b><%=usuario.getTelefono()%></p>
-<br>
-<p><b> Nivel :</b><%=usuario.getInscripcion().nivel%></p>
-<%
-    if(usuario.getModoUsuario().equals("profesor")){
-%>
-<br>
-<form action="CuentaServlet" method="GET">
-    <button type="submit" name="opc" value="calificar"> calificar </button>
-</form>
-<%}else{%>
-<br>
-<form action="CuentaServlet" method="POST">
-    <button type="submit"> Inscribirse en curso </button>
-</form>
-<%}%>
-<br>
-<form action="CuentaServlet" method="GET">
-    <button type="submit" name="opc" value="cerrar"> cerrar sesión </button>
-</form>
+
+
+<div class="contenedor">
+    <h1>BIENVENIDO A CAMBRIGE</h1>
+    <%
+        Usuario usuario = (Usuario) request.getSession().getAttribute("loginUser");
+    %>
+    <div class="containerPrincipal">
+        <div class="columna izquierda">
+            <p class="label"><b> Modo :</b><%=usuario.getModoUsuario()%>
+            </p>
+            <br>
+            <p class="label"><b> ci :</b><%=usuario.getCi()%>
+            </p>
+            <br>
+            <p class="label"><b> correo :</b><%=usuario.getCorreo()%>
+            </p>
+            <br>
+        </div>
+        <div class="columna derecha">
+            <p class="label"><b> Nombre completo:</b>
+                <%=usuario.getNombre()%> <%=usuario.getApellido()%>
+            </p>
+            <br>
+            <p class="label"><b> telefono :</b><%=usuario.getTelefono()%>
+            </p>
+            <br>
+            <p class="label"><b> Nivel :</b><%=usuario.getInscripcion().nivel%>
+            </p>
+            <br>
+        </div>
+    </div>
+
+
+    <div class="contenedorBotones">
+        <div class="sinColumna">
+            <%
+                if (usuario.getModoUsuario().equals("profesor")) {
+            %>
+            <form action="CuentaServlet" method="GET">
+                <button type="submit" name="opc" value="calificar"> calificar</button>
+            </form>
+            <%} else {%>
+            <div class="IncribirseEnCurso">
+                <form action="CuentaServlet" method="POST">
+                    <button type="submit"> Inscribirse en curso</button>
+                </form>
+            </div>
+            <%}%>
+            <div class="CerrarSesion">
+                <br>
+                <form action="CuentaServlet" method="GET">
+                    <button type="submit" name="opc" value="cerrar"> cerrar sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

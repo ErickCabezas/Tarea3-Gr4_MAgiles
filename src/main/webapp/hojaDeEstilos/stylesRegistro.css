@@ -49,6 +49,14 @@ form .nombreUsuario {
     border: 0px;
 }
 
+form input {
+    display: block;
+    margin-left: 100px;
+    text-align: center;
+    float: right;
+}
+
+
 .nombreUsuario inpu {
     width: 100%;
     padding: 0 5px;
@@ -116,3 +124,81 @@ input[type="submit"]:hover {
     border-color: purple;
     transition: .5s;
 }
+
+.contenedorRadioButton {
+    margin-top: 20px;
+    background: none;
+    color: #adadad;
+    font-size: 20px;
+}
+
+.contenedorRadioButton .grupoRadioButton {
+    display: flex;
+    margin-top: 7px;
+    margin-left: 65px;
+    justify-content: left;
+    color: white;
+}
+
+.grupoRadioButton input {
+    text-align: left;
+    color: white;
+}
+
+.btnRegistrarse {
+    display: flex;
+    margin-left: 50px;
+    margin-top: 15px;
+    width: 70%;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center; /* Alinea los elementos horizontalmente al centro */
+    align-items: center;
+    border: 1px solid;
+    background: #F3E5AB;
+    border-radius: 25px;
+    font-size: 22px;
+    opacity: 0.8;
+}
+
+.btnRegistrarse button {
+    background-color: transparent; /* Hace el fondo del botón transparente */
+    border: none; /* Elimina el borde del botón */
+    color: black;
+    font-size: 21px;
+    margin-bottom: 0;
+}
+
+.btnRegresarLogin {
+    display: flex;
+    margin-left: 50px;
+    margin-top: 10px;
+    width: 70%;
+    height: 40px;
+    text-align: center;
+    justify-content: center; /* Alinea los elementos horizontalmente al centro */
+    align-items: center;
+    border: 1px solid;
+    background: #F3E5AB;
+    border-radius: 25px;
+    font-size: 22px;
+    opacity: 0.8;
+
+}
+
+.btnRegresarLogin button {
+    margin-top: -5px;
+    background-color: transparent; /* Hace el fondo del botón transparente */
+    border: none; /* Elimina el borde del botón */
+    color: black;
+    font-size: 21px;
+    margin-bottom: 0;
+}
+
+
+#usuarioEsRegistrado {
+    margin-left: 40%;
+    color: white;
+}
+

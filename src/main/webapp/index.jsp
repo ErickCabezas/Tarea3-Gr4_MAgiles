@@ -45,7 +45,6 @@
     </form>
 
     <br>
-    <p id="marca">GR-4</p>
 </div>
 </body>
 </html>

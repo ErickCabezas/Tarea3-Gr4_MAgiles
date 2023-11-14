@@ -12,7 +12,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 420px;
-
+    height: auto;
     background-color: rgba(0, 0, 0, 0.85);
     border-radius: 15px;
 }
@@ -114,8 +114,8 @@ input[type="submit"]:hover {
 }
 
 .btnRegistro {
-    margin-top: 50px;
-    margin-bottom: -20px;
+    margin-top: 60px;
+    margin-bottom: -10px;
     text-align: center;
     color: black;
 }

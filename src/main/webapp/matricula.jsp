@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>MATRICULA</title>
+    <link rel="stylesheet" href="hojaDeEstilos/stylesMatricula.css">
 </head>
 <body>
 <h1><b>EMPIEZA CON TU MATRICULA</b></h1>
@@ -16,8 +17,10 @@
     <%
         Usuario user = (Usuario) request.getSession().getAttribute("userMatricula");
     %>
-    <p><b>Hola <%=user.getNombre()%>  <%=user.getApellido()%> </b></p>
-    <p>User: <%= user.getLogin().getUsuario()%></p>
+    <p><b>Hola <%=user.getNombre()%>  <%=user.getApellido()%>
+    </b></p>
+    <p>User: <%= user.getLogin().getUsuario()%>
+    </p>
     <p><b>--------------------------------------------</b></p>
     <p><b>Seleccione el horarario al que se quiere matricular</b></p>
     <select name="horario">
@@ -29,18 +32,19 @@
         <option value="16-18">16-18</option>
         <option value="18-20">18-20</option>
     </select>
-    <button type="submit"> Guardar </button>
+    <button type="submit"> Guardar</button>
 </form>
 <br>
 <form action="MatriculaServlet" method="GET">
-    <button type="submit"> regresar </button>
+    <button type="submit"> regresar</button>
 </form>
 <br>
 <%
     String notificacion = ".....";
-    notificacion=(String) request.getSession().getAttribute("noti");
+    notificacion = (String) request.getSession().getAttribute("noti");
 %>
-<p><%=notificacion%></p>
+<p><%=notificacion%>
+</p>
 <br>
 </body>
 </html>
