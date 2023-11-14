@@ -18,9 +18,11 @@
     <p><label>CI:</label><input type="text" name="ci"></p>
     <p><label>Correo:</label><input type="text" name="correo"></p>
     <p><label>Telefono:</label><input type="text" name="telf"></p>
-    <p><label>Tipo de usuario:</label><input type="text" name="modo"></p>
     <p><label>Usuario:</label><input type="text" name="user"></p>
     <p><label>Contraseña:</label><input type="text" name="key"></p>
+    <p><b>Tipo de usuario:</b>
+    <input type="radio" name="tipoUser" value="estudiante"/>Estudiante
+        <input type="radio" name="tipoUser" value="profesor"/>Profesor</p><br>
     <button type="submit"> Registrarse </button>
 </form>
 <br>
