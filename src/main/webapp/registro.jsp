@@ -31,16 +31,17 @@
             <div class="grupoRadioButton">
                 <input type="radio" name="tipoUser" value="profesor"/>Profesor<br>
             </div>
-
         </div>
         <div class="btnRegistrarse">
             <button type="submit"> Registrarse</button>
         </div>
+    </form>
+    <br>
+    <form action="RegistroServlet" method="GET">
         <div class="btnRegresarLogin">
             <button type="submit"> Regresar</button>
         </div>
     </form>
-    <br>
     <div class="txtAgregado">
         <%
             String agregado = ".....";
@@ -57,15 +58,11 @@
         <br>
 
     </div>
-
-
 </div>
 
 <h1>Ver lista de usuarios</h1>
 <form action="RegistroServlet" method="GET">
-    <button type="submit"> Mostrar usuarios</button>
+    <button type="submit" name="mostrar" value="mostrar"> Mostrar usuarios</button>
 </form>
-
-
 </body>
 </html>

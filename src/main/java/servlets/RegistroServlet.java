@@ -22,10 +22,14 @@ public class RegistroServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        HttpSession misesion= req.getSession();
-        misesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getListaUsuarios());
-        resp.sendRedirect("mostrarUsuarios.jsp");
+        String opc=req.getParameter("mostrar");
+        if(opc!=null){
+            HttpSession misesion= req.getSession();
+            misesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getListaUsuarios());
+            resp.sendRedirect("mostrarUsuarios.jsp");
+        }else{
+            resp.sendRedirect("index.jsp");
+        }
     }
 
     @Override
