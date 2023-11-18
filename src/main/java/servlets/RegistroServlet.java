@@ -1,7 +1,5 @@
 package servlets;
 
-import com.example.web.Gestor_Usuario;
-import com.example.web.Login;
 import com.example.web.Usuario;
 
 import javax.servlet.ServletException;
@@ -25,7 +23,7 @@ public class RegistroServlet extends HttpServlet {
         String opc=req.getParameter("mostrar");
         if(opc!=null){
             HttpSession misesion= req.getSession();
-            misesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getListaUsuarios());
+            misesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getUsuarios());
             resp.sendRedirect("mostrarUsuarios.jsp");
         }else{
             resp.sendRedirect("index.jsp");
@@ -42,8 +40,10 @@ public class RegistroServlet extends HttpServlet {
         String tel = req.getParameter("telf");
         String usuario= req.getParameter("user");
         String key = req.getParameter("key");
+
         String agregado= LoginServlet.gestor_usuario.agregarUsuario(
                  new Usuario(nombre,apellido,ci,correo,modo,tel,usuario,key));
+
         HttpSession misesion= req.getSession();
         misesion.setAttribute("registro", agregado);
         resp.sendRedirect("registro.jsp");

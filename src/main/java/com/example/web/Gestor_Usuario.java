@@ -4,44 +4,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gestor_Usuario {
-    private List<Usuario> listaUsuarios;
+    private List<Usuario> usuarios;
 
     public Gestor_Usuario() {
-        this.listaUsuarios = new ArrayList<>();
+        this.usuarios = new ArrayList<>();
 
     }
 
-    public List<Usuario> getListaUsuarios() {
-        return listaUsuarios;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    public Usuario buscarUsuario(String usuario){
-        for (Usuario user : listaUsuarios) {
-            if (user.getLogin().getUsuario().equals(usuario)) {
-                return user; // Persona encontrada
+    public Usuario buscarUsuario(String usuarioABuscar) {
+        for (Usuario usuario : usuarios) {
+            if (compararUsuario(usuarioABuscar, usuario)) {
+                return usuario; // Persona encontrada
             }
         }
         return null; // Persona no encontrada
     }
-    public String actualizarInformacion(){
-    return "implementar";
+
+    public boolean compararUsuario(String usuarioABuscar, Usuario usuario) {
+        return usuario.getLogin().getUsuario().equals(usuarioABuscar);
     }
-    public String agregarUsuario(Usuario user){
-        if(validarCedulaEcuatoriana(user.getCi()) && (buscarUsuario(user.getLogin().getUsuario())==null)){
-            listaUsuarios.add(user);
-            return "usuario agregado";
-        }else{
-            return "usuario no agregado";
+
+
+    public String agregarUsuario(Usuario usuario) {
+        String notificacion = "";
+        if (validarUsuario(usuario)) {
+            usuarios.add(usuario);
+            notificacion = "Usuario agregado";
+        } else {
+            notificacion = "Usuario no agregado";
         }
+
+        return notificacion;
     }
-    public String eliminarUsuario(Usuario user){
-        Usuario usuario=buscarUsuario(user.getLogin().getUsuario());
-        if(usuario!=null){
-            listaUsuarios.remove(usuario);
-            return "usuario eliminado";
-        }else{
-            return "usuario no existe";
+
+    private boolean validarUsuario(Usuario usuario) {
+        return validarCedulaEcuatoriana(usuario.getCedula()) && (buscarUsuario(usuario.getLogin().getUsuario()) == null);
+    }
+
+
+    public String eliminarUsuario(Usuario usuarioAEliminar) {
+        String notificacion = "";
+        Usuario usuario = buscarUsuario(usuarioAEliminar.getLogin().getUsuario());
+        if (usuario != null) {
+            usuarios.remove(usuario);
+            notificacion = "usuario eliminado";
+        } else {
+            notificacion = "usuario no existe";
         }
+        return notificacion;
     }
 
     public boolean validarCedulaEcuatoriana(String cedula) {
@@ -61,7 +75,7 @@ public class Gestor_Usuario {
         int provincia = Integer.parseInt(cedula.substring(0, 2));
 
         // Verificar si la provincia está en el rango válido (01-24)
-        if (provincia < 1 || provincia > 24) {
+        if (provincia > 24 || provincia < 1) {
             return false;
         }
 
@@ -82,10 +96,10 @@ public class Gestor_Usuario {
     private boolean validarDigitoVerificador(String cedulaBase, int verificador) {
         int suma = 0;
 
+        //*
         for (int i = 0; i < cedulaBase.length(); i++) {
             int digito = Character.getNumericValue(cedulaBase.charAt(i));
             digito = (i % 2 == 0) ? digito * 2 : digito;
-
             suma += (digito > 9) ? digito - 9 : digito;
         }
 
@@ -95,6 +109,10 @@ public class Gestor_Usuario {
         }
 
         return resultado == verificador;
+    }
+
+    public int CalcularResultado(int suma) {
+        return suma;
     }
 
 }

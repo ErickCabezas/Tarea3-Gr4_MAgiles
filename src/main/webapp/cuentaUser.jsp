@@ -25,7 +25,7 @@
             <p class="label"><b> Modo :</b><%=usuario.getModoUsuario()%>
             </p>
             <br>
-            <p class="label"><b> ci :</b><%=usuario.getCi()%>
+            <p class="label"><b> ci :</b><%=usuario.getCedula()%>
             </p>
             <br>
             <p class="label"><b> correo :</b><%=usuario.getCorreo()%>

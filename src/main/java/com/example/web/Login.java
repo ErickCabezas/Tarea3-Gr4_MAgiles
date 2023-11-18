@@ -9,11 +9,13 @@ public class Login {
         this.contrasenia = contrasenia;
     }
 
-    public boolean validarCredenciales(String user, String key){
-        return this.usuario.equals(user) && this.contrasenia.equals(key);
+
+    public boolean validarCredenciales(String usuario, String contrasenia) {
+        return this.usuario.equals(usuario) && this.contrasenia.equals(contrasenia);
     }
 
     public String getUsuario() {
         return usuario;
     }
+
 }

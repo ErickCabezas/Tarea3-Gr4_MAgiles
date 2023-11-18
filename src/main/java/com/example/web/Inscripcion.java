@@ -6,8 +6,8 @@ public abstract class Inscripcion {
     public String horario;
     public int nivel;
 
-    public String inscribir() {
-        return "";
-    }
+    public abstract String inscribir();
 
 }
+
+
