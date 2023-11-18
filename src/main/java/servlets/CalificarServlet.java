@@ -15,31 +15,32 @@ import java.io.IOException;
 public class CalificarServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String usuario= req.getParameter("usuario");
-        int nivel= Integer.parseInt(req.getParameter("nivel")) ;
-        Usuario user=LoginServlet.gestor_usuario.buscarUsuario(usuario);
+    protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        String nombreUsuario= solicitud.getParameter("usuario");
+        int nivel= Integer.parseInt(solicitud.getParameter("nivel")) ;
+        Usuario usuario=LoginServlet.gestor_usuario.buscarUsuario(nombreUsuario);
 
-        if(user!=null){
+        HttpSession miSesion = solicitud.getSession();
+
+        if(usuario!=null){
+            //misma linea en distintos if's
+
             if(nivel==0){
-                HttpSession misesion = req.getSession();
-                misesion.setAttribute("Notificacion", "Seleccione nivel segun la calificación");
-                resp.sendRedirect("calificar.jsp");
+                miSesion.setAttribute("Notificación", "Seleccione nivel según la calificación");
+                respuesta.sendRedirect("calificar.jsp");
             }else {
-                user.getInscripcion().nivel=nivel;
-                HttpSession misesion = req.getSession();
-                misesion.setAttribute("Notificacion", "usuario calificado");
-                resp.sendRedirect("calificar.jsp");
+                usuario.getInscripcion().nivel=nivel;
+                miSesion.setAttribute("Notificación", "usuario calificado");
+                respuesta.sendRedirect("calificar.jsp");
             }
         }else{
-            HttpSession misesion= req.getSession();
-            misesion.setAttribute("Notificacion","no existe el estudiante con ese usuario");
-            resp.sendRedirect("calificar.jsp");
+            miSesion.setAttribute("Notificación","no existe el estudiante con ese usuario");
+            respuesta.sendRedirect("calificar.jsp");
         }
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("cuentaUser.jsp");
+    protected void doGet(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        respuesta.sendRedirect("cuentaUser.jsp");
     }
 }

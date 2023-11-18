@@ -16,37 +16,37 @@ import java.io.IOException;
 @WebServlet(name="RegistroServlet", urlPatterns = {"/RegistroServlet"})
 public class RegistroServlet extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
 
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String opc=req.getParameter("mostrar");
-        if(opc!=null){
-            HttpSession misesion= req.getSession();
-            misesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getListaUsuarios());
-            resp.sendRedirect("mostrarUsuarios.jsp");
+    protected void doGet(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        String opcion=solicitud.getParameter("mostrar");
+        if(opcion!=null){
+            HttpSession miSesion= solicitud.getSession();
+            miSesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getListaUsuarios());
+            respuesta.sendRedirect("mostrarUsuarios.jsp");
         }else{
-            resp.sendRedirect("index.jsp");
+            respuesta.sendRedirect("index.jsp");
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String nombre = req.getParameter("nombre");
-        String apellido = req.getParameter("apellido");
-        String ci = req.getParameter("ci");
-        String correo = req.getParameter("correo");
-        String modo = req.getParameter("tipoUser");
-        String tel = req.getParameter("telf");
-        String usuario= req.getParameter("user");
-        String key = req.getParameter("key");
+    protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        String nombre = solicitud.getParameter("nombre");
+        String apellido = solicitud.getParameter("apellido");
+        String ci = solicitud.getParameter("ci");
+        String correo = solicitud.getParameter("correo");
+        String modo = solicitud.getParameter("tipoUser");
+        String tel = solicitud.getParameter("telf");
+        String usuario= solicitud.getParameter("user");
+        String key = solicitud.getParameter("key");
         String agregado= LoginServlet.gestor_usuario.agregarUsuario(
                  new Usuario(nombre,apellido,ci,correo,modo,tel,usuario,key));
-        HttpSession misesion= req.getSession();
-        misesion.setAttribute("registro", agregado);
-        resp.sendRedirect("registro.jsp");
+        HttpSession miSesion= solicitud.getSession();
+        miSesion.setAttribute("registro", agregado);
+        respuesta.sendRedirect("registro.jsp");
     }
 
 
