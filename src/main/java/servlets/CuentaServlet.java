@@ -15,20 +15,20 @@ import java.io.IOException;
 public class CuentaServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String opc=req.getParameter("opc");
-        if(opc.equalsIgnoreCase("cerrar")){
-            resp.sendRedirect("index.jsp");
+    protected void doGet(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        String opcion=solicitud.getParameter("opc");
+        if(opcion.equalsIgnoreCase("cerrar")){
+            respuesta.sendRedirect("index.jsp");
         }else{
-            resp.sendRedirect("calificar.jsp");
+            respuesta.sendRedirect("calificar.jsp");
         }
     }
 
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession misesion= req.getSession();
-        misesion.setAttribute("userMatricula",LoginServlet.usuario );
-        resp.sendRedirect("matricula.jsp");
+    protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        HttpSession miSesion= solicitud.getSession();
+        miSesion.setAttribute("userMatricula",LoginServlet.usuario );
+        respuesta.sendRedirect("matricula.jsp");
     }
 }

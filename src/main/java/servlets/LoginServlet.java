@@ -19,29 +19,28 @@ public class LoginServlet extends HttpServlet {
     public static Usuario usuario;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("registro.jsp");
+    protected void doGet(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        respuesta.sendRedirect("registro.jsp");
     }
 
-    protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String usuario= req.getParameter("user");
-        String key= req.getParameter("key");
-        Usuario user=gestor_usuario.buscarUsuario(usuario);
-        boolean ver =user!=null && (user.getLogin().validarCredenciales(usuario,key));
-        if(ver){
-            HttpSession misesion= req.getSession();
-            misesion.setAttribute("loginUser",user);
-            LoginServlet.usuario=user;
-            resp.sendRedirect("cuentaUser.jsp");
+    protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        String nombreUsuario= solicitud.getParameter("user");
+        String key= solicitud.getParameter("key");
+        Usuario usuario=gestor_usuario.buscarUsuario(nombreUsuario);
+        boolean credencialesValidas = usuario!=null && (usuario.getLogin().validarCredenciales(nombreUsuario,key));
+        HttpSession miSesion= solicitud.getSession();
+        if(credencialesValidas){
+            miSesion.setAttribute("loginUser",usuario);
+            LoginServlet.usuario=usuario;
+            respuesta.sendRedirect("cuentaUser.jsp");
         }else{
-            HttpSession misesion= req.getSession();
-            misesion.setAttribute("Error","Las credenciales no son validas");
-            resp.sendRedirect("index.jsp");
+            miSesion.setAttribute("Error","Las credenciales no son validas");
+            respuesta.sendRedirect("index.jsp");
         }
 
     }

@@ -16,32 +16,30 @@ import java.time.LocalDate;
 @WebServlet(name="ExamenServlet", urlPatterns = {"/ExamenServlet"})
 public class ExamenServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Usuario user=LoginServlet.usuario;
-        String horario = req.getParameter("horario");
-        String notifica="";
-        if(user.getInscripcion().nivel!=0) {
+    protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        Usuario usuario=LoginServlet.usuario;
+        String horario = solicitud.getParameter("horario");
+        String textoNotificacion="";
+        HttpSession miSesion= solicitud.getSession();
+        if(usuario.getInscripcion().nivel!=0) {
             if (horario.equalsIgnoreCase("0")){
-                notifica="seleccione horario";
-                HttpSession misesion= req.getSession();
-                misesion.setAttribute("noti", notifica);
-                resp.sendRedirect("examen.jsp");
+                textoNotificacion="seleccione horario";
+                miSesion.setAttribute("noti", textoNotificacion);
+                respuesta.sendRedirect("examen.jsp");
             }else {
-                user.setInscripcion(new InscripcionExamen(horario));
-                notifica=user.getInscripcion().inscribir();
-                HttpSession misesion= req.getSession();
-                misesion.setAttribute("noti", notifica);
-                resp.sendRedirect("examen.jsp");
+                usuario.setInscripcion(new InscripcionExamen(horario));
+                textoNotificacion=usuario.getInscripcion().inscribir();
+                miSesion.setAttribute("noti", textoNotificacion);
+                respuesta.sendRedirect("examen.jsp");
             }
         }else{
-            HttpSession misesion= req.getSession();
-            misesion.setAttribute("noti", "si ya dio el examen espere la calificacion");
-            resp.sendRedirect("examen.jsp");
+            miSesion.setAttribute("noti", "si ya dio el examen espere la calificación");
+            respuesta.sendRedirect("examen.jsp");
         }
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("cuentaUser.jsp");
+    protected void doGet(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        respuesta.sendRedirect("cuentaUser.jsp");
     }
 }
