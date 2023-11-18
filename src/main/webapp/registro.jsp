@@ -17,11 +17,11 @@
     <form action="RegistroServlet" method="POST">
         <div class="nombreUsuario"><p><label>Nombre:</label><input type="text" name="nombre"></p>
             <p><label>Apellido:</label><input type="text" name="apellido"></p>
-            <p><label>CI:</label><input type="text" name="ci"></p>
+            <p><label>Cedula:</label><input type="text" name="cedula"></p>
             <p><label>Correo:</label><input type="text" name="correo"></p>
             <p><label>Telefono:</label><input type="text" name="telf"></p>
             <p><label>Usuario:</label><input type="text" name="user"></p>
-            <p><label>Contraseña:</label><input type="text" name="key"></p>
+            <p><label>Contraseña:</label><input type="text" name="contrasenia"></p>
         </div>
         <div class="contenedorRadioButton">
             <p><label>Tipo de usuario:</label></p>

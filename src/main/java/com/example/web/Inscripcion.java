@@ -1,9 +1,9 @@
 package com.example.web;
 
 public abstract class Inscripcion {
-    public Usuario usuario;
-    public String fechaInscripcion;
-    public String horario;
+    protected Usuario usuario;
+    protected String fechaInscripcion;
+    protected String horario;
     public int nivel;
 
     public abstract String inscribir();

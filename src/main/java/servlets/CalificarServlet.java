@@ -19,24 +19,24 @@ public class CalificarServlet extends HttpServlet {
         String nombreUsuario= solicitud.getParameter("usuario");
         int nivel= Integer.parseInt(solicitud.getParameter("nivel")) ;
         Usuario usuario=LoginServlet.gestor_usuario.buscarUsuario(nombreUsuario);
-
+        String notificacion="";
         HttpSession miSesion = solicitud.getSession();
-
         if(usuario!=null){
             //misma linea en distintos if's
 
             if(nivel==0){
-                miSesion.setAttribute("Notificación", "Seleccione nivel según la calificación");
+                notificacion="Seleccione nivel según la calificación";
                 respuesta.sendRedirect("calificar.jsp");
             }else {
                 usuario.getInscripcion().nivel=nivel;
-                miSesion.setAttribute("Notificación", "usuario calificado");
+                notificacion="Usuario calificado";
                 respuesta.sendRedirect("calificar.jsp");
             }
         }else{
-            miSesion.setAttribute("Notificación","no existe el estudiante con ese usuario");
+            notificacion="no existe el estudiante con ese usuario";
             respuesta.sendRedirect("calificar.jsp");
         }
+        miSesion.setAttribute("Notificacion", notificacion);
     }
 
     @Override

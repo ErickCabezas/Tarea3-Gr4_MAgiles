@@ -24,42 +24,48 @@ public class MatriculaServlet extends HttpServlet {
         Usuario usuario=LoginServlet.usuario;
         int nivel=usuario.getInscripcion().nivel;
         String horario = solicitud.getParameter("horario");
-        String fechaInicio= String.valueOf(LocalDate.now().plusMonths(1));
-        String fechaFin= String.valueOf(LocalDate.now().plusMonths(4));
+        FechaMatricula fechaMatricula= new FechaMatricula();
+        String fechaInicio= fechaMatricula.getFechaInicio();
+        String fechaFin= fechaMatricula.getFechaFin();
         String textoNotificacion="";
         HttpSession miSesion= solicitud.getSession();
 
         if(usuario.getInscripcion().nivel!=0) {
             if (horario.equalsIgnoreCase("0")){
                 textoNotificacion="seleccione horario";
-                miSesion.setAttribute("noti", textoNotificacion);
                 respuesta.sendRedirect("matricula.jsp");
             }else {
-                int aulaInscripcion = 106;
-                if (horario.equalsIgnoreCase("7-9")) {
-                    aulaInscripcion = 101;
-                }
-                if (horario.equalsIgnoreCase("9-11")) {
-                    aulaInscripcion = 102;
-                }
-                if (horario.equalsIgnoreCase("11-13")) {
-                    aulaInscripcion = 103;
-                }
-                if (horario.equalsIgnoreCase("14-16")) {
-                    aulaInscripcion = 104;
-                }
-                if (horario.equalsIgnoreCase("16-18")) {
-                    aulaInscripcion = 105;
-                }
-                usuario.setInscripcion(new InscripcionCurso(aulaInscripcion, fechaInicio, fechaFin, horario, 300, nivel));
+                usuario.setInscripcion(new InscripcionCurso(asignarAula(horario), fechaInicio, fechaFin, horario, 300, nivel));
                 textoNotificacion=usuario.getInscripcion().inscribir();
-                miSesion.setAttribute("noti", textoNotificacion);
                 respuesta.sendRedirect("matricula.jsp");
             }
+            miSesion.setAttribute("noti", textoNotificacion);
         }else{
             miSesion.setAttribute("userMatricula", usuario);
             respuesta.sendRedirect("examen.jsp");
         }
 
+    }
+    public int asignarAula(String horario){
+        int aulaInscripcion=0;
+        if (horario.equalsIgnoreCase("7-9")) {
+            aulaInscripcion = 101;
+        }
+        if (horario.equalsIgnoreCase("9-11")) {
+            aulaInscripcion = 102;
+        }
+        if (horario.equalsIgnoreCase("11-13")) {
+            aulaInscripcion = 103;
+        }
+        if (horario.equalsIgnoreCase("14-16")) {
+            aulaInscripcion = 104;
+        }
+        if (horario.equalsIgnoreCase("16-18")) {
+            aulaInscripcion = 105;
+        }
+        if (horario.equalsIgnoreCase("18-20")) {
+            aulaInscripcion = 105;
+        }
+        return aulaInscripcion;
     }
 }

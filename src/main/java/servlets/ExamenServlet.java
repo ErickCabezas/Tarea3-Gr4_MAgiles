@@ -17,25 +17,25 @@ import java.time.LocalDate;
 public class ExamenServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        HttpSession miSesion= solicitud.getSession();
         Usuario usuario=LoginServlet.usuario;
         String horario = solicitud.getParameter("horario");
         String textoNotificacion="";
-        HttpSession miSesion= solicitud.getSession();
+
         if(usuario.getInscripcion().nivel!=0) {
             if (horario.equalsIgnoreCase("0")){
                 textoNotificacion="seleccione horario";
-                miSesion.setAttribute("noti", textoNotificacion);
                 respuesta.sendRedirect("examen.jsp");
             }else {
                 usuario.setInscripcion(new InscripcionExamen(horario));
                 textoNotificacion=usuario.getInscripcion().inscribir();
-                miSesion.setAttribute("noti", textoNotificacion);
                 respuesta.sendRedirect("examen.jsp");
             }
         }else{
-            miSesion.setAttribute("noti", "si ya dio el examen espere la calificación");
+            textoNotificacion="si ya dio el examen espere la calificación";
             respuesta.sendRedirect("examen.jsp");
         }
+        miSesion.setAttribute("noti", textoNotificacion);
     }
 
     @Override

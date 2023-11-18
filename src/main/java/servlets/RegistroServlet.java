@@ -20,8 +20,8 @@ public class RegistroServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String opc=req.getParameter("mostrar");
-        if(opc!=null){
+        String opcion=req.getParameter("mostrar");
+        if(opcion!=null){
             HttpSession misesion= req.getSession();
             misesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getUsuarios());
             resp.sendRedirect("mostrarUsuarios.jsp");
@@ -31,23 +31,27 @@ public class RegistroServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String nombre = req.getParameter("nombre");
-        String apellido = req.getParameter("apellido");
-        String ci = req.getParameter("ci");
-        String correo = req.getParameter("correo");
-        String modo = req.getParameter("tipoUser");
-        String tel = req.getParameter("telf");
-        String usuario= req.getParameter("user");
-        String key = req.getParameter("key");
-
-        String agregado= LoginServlet.gestor_usuario.agregarUsuario(
-                 new Usuario(nombre,apellido,ci,correo,modo,tel,usuario,key));
-
-        HttpSession misesion= req.getSession();
-        misesion.setAttribute("registro", agregado);
-        resp.sendRedirect("registro.jsp");
+    protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
+        HttpSession misesion= solicitud.getSession();
+        misesion.setAttribute("registro", RegistrarUsuario(solicitud));
+        respuesta.sendRedirect("registro.jsp");
     }
+    public String RegistrarUsuario(HttpServletRequest solicitud){
+
+        String nombre = solicitud.getParameter("nombre");
+        String apellido = solicitud.getParameter("apellido");
+        String cedula = solicitud.getParameter("cedula");
+        String correo = solicitud.getParameter("correo");
+        String modo = solicitud.getParameter("tipoUser");
+        String telefono = solicitud.getParameter("telf");
+        String usuario= solicitud.getParameter("user");
+        String contrasenia = solicitud.getParameter("contrasenia");
+
+        return LoginServlet.gestor_usuario.agregarUsuario(
+                new Usuario(nombre,apellido,cedula,correo,modo,telefono,usuario,contrasenia));
+    }
+
+
 
 
 

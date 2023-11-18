@@ -18,7 +18,7 @@ public class Usuario {
         this.telefono = telefono;
         this.modoUsuario = modoUsuario;
         this.login = new Login(usuario, contrasenia);
-        //TODO: ELIMINAR ESTO Y PONER COMPOSICION O MODIFCAR SEGUN SEA
+        //TODO: PONER COMPOSICION O MODIFCAR SEGUN SEA
         this.inscripcion = new InscripcionExamen();
     }
 

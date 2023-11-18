@@ -25,7 +25,7 @@
             <div class="Contraseña">
                 <label id="subtitulo2">CONTRASEÑA</label>
                 <br><br>
-                <input type="password" class="entrada" name="key"/>
+                <input type="password" class="entrada" name="contrasenia"/>
                 <br><br>
             </div>
 
