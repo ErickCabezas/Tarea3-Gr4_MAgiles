@@ -20,7 +20,6 @@ public class CalificarServlet extends HttpServlet {
         int nivel= Integer.parseInt(solicitud.getParameter("nivel")) ;
         Usuario usuario=LoginServlet.gestor_usuario.buscarUsuario(nombreUsuario);
         String notificacion="";
-        HttpSession miSesion = solicitud.getSession();
         if(usuario!=null){
             //misma linea en distintos if's
 
@@ -36,6 +35,10 @@ public class CalificarServlet extends HttpServlet {
             notificacion="no existe el estudiante con ese usuario";
             respuesta.sendRedirect("calificar.jsp");
         }
+        pasarNotificacion(solicitud,notificacion);
+    }
+    public void pasarNotificacion(HttpServletRequest solicitud, String notificacion){
+        HttpSession miSesion = solicitud.getSession();
         miSesion.setAttribute("Notificacion", notificacion);
     }
 

@@ -58,6 +58,7 @@ public class Gestor_Usuario {
         return notificacion;
     }
 
+
     public boolean validarCedulaEcuatoriana(String cedula) {
         // Verificar si la longitud del número de cédula es 10
         if (cedula.length() != 10) {
@@ -99,20 +100,28 @@ public class Gestor_Usuario {
         //*
         for (int i = 0; i < cedulaBase.length(); i++) {
             int digito = Character.getNumericValue(cedulaBase.charAt(i));
-            digito = (i % 2 == 0) ? digito * 2 : digito;
-            suma += (digito > 9) ? digito - 9 : digito;
+            digito = getDigito(i,digito);
+            suma += getSuma(digito);
         }
 
-        int resultado = 10 - (suma % 10);
+        int resultado = calcularResultado(suma);
         if (resultado == 10) {
             resultado = 0;
         }
-
         return resultado == verificador;
     }
 
-    public int CalcularResultado(int suma) {
-        return suma;
+    public int getDigito(int i, int digito) {
+        return (i % 2 == 0) ? digito * 2 : digito;
+    }
+
+    public int getSuma(int digito) {
+        return (digito > 9) ? digito - 9 : digito;
+    }
+    
+    public int calcularResultado(int suma) {
+        
+        return 10 - (suma % 10);
     }
 
 }
