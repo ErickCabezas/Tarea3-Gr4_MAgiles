@@ -17,7 +17,6 @@ import java.time.LocalDate;
 public class ExamenServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
-        HttpSession miSesion= solicitud.getSession();
         Usuario usuario=LoginServlet.usuario;
         String horario = solicitud.getParameter("horario");
         String textoNotificacion="";
@@ -35,9 +34,12 @@ public class ExamenServlet extends HttpServlet {
             textoNotificacion="si ya dio el examen espere la calificación";
             respuesta.sendRedirect("examen.jsp");
         }
-        miSesion.setAttribute("noti", textoNotificacion);
+        pasarNotificacion(solicitud,textoNotificacion);
     }
-
+    public void pasarNotificacion(HttpServletRequest solicitud, String notificacion){
+        HttpSession miSesion = solicitud.getSession();
+        miSesion.setAttribute("noti", notificacion);
+    }
     @Override
     protected void doGet(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
         respuesta.sendRedirect("cuentaUser.jsp");
