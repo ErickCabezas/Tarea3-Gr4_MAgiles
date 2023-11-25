@@ -44,11 +44,28 @@ public class Gestor_Usuario {
             throw new RuntimeException(e);
         }
 
+
         return notificacion;
     }
 
     private boolean validarUsuario(Usuario usuario) {
-        return validarCedulaEcuatoriana(usuario.getCedula()) && (buscarUsuario(usuario.getLogin().getUsuario()) == null);
+        return comprobarDatosValidos(usuario);
+    }
+
+    private boolean comprobarDatosValidos(Usuario usuario) {
+        return validarCedulaEcuatoriana(usuario.getCedula()) && (buscarUsuario(usuario.getLogin().getUsuario()) == null)
+                && comprobarNumeroSinLetras(usuario.getTelefono());
+    }
+
+    public boolean comprobarNumeroSinLetras(String telefono) {
+        int telefonoEntero;
+        try {
+            telefonoEntero = Integer.parseInt(telefono);
+            return true;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

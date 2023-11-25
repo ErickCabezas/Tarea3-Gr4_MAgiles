@@ -9,7 +9,6 @@ public class Login {
         this.contrasenia = contrasenia;
     }
 
-
     public boolean validarCredenciales(String usuario, String contrasenia) {
         return this.usuario.equals(usuario) && this.contrasenia.equals(contrasenia);
     }
@@ -17,5 +16,4 @@ public class Login {
     public String getUsuario() {
         return usuario;
     }
-
 }

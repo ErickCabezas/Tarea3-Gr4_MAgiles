@@ -22,6 +22,7 @@ public class Usuario {
         this.inscripcion = new InscripcionExamen();
     }
 
+
     public String getApellido() {
         return apellido;
     }
