@@ -18,6 +18,8 @@ public class InscripcionCurso extends Inscripcion {
         this.costo = costo;
     }
 
+
+
     @Override
     public String inscribir() {
         if (super.nivel == 0) {
@@ -25,6 +27,7 @@ public class InscripcionCurso extends Inscripcion {
         } else {
             return "Estudiante inscrito pagar $"+ getCosto();
         }
+
     }
 
     public double getCosto() {
