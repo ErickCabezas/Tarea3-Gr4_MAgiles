@@ -28,7 +28,7 @@ private Efectivo efectivo;
             return false;
         }
     }
-    public boolean PagoEfectivo(){
+    public boolean pagoEfectivo(){
         this.efectivo.setPagado(true);
         return this.efectivo.isPagado();
     }

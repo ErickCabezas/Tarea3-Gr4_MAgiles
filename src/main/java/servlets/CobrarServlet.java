@@ -1,6 +1,5 @@
 package servlets;
 
-import com.example.web.InscripcionCurso;
 import com.example.web.Usuario;
 
 import javax.servlet.ServletException;
@@ -13,10 +12,11 @@ import java.io.IOException;
 
 @WebServlet(name="CobrarServlet", urlPatterns = {"/CobrarServlet"})
 public class CobrarServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
         String nombreUsuario= solicitud.getParameter("usuario");
-        double monto= Double.parseDouble(solicitud.getParameter("monto"));
+        String monto= solicitud.getParameter("monto");
         String modoPago= solicitud.getParameter("metodoPago");
         Usuario usuario=LoginServlet.gestor_usuario.buscarUsuario(nombreUsuario);
         String notificacion="";
@@ -25,7 +25,7 @@ public class CobrarServlet extends HttpServlet {
             if(modoPago.equalsIgnoreCase("0")){
                 notificacion="Seleccione modo de pago";
             }else {
-                notificacion = validarPago(usuario, modoPago);
+                notificacion = confirmarPago(usuario, modoPago);
             }
         }else{
             notificacion="no existe el estudiante con ese usuario o el monto es incorrecto";
@@ -34,11 +34,11 @@ public class CobrarServlet extends HttpServlet {
         respuesta.sendRedirect("cobrar.jsp");
     }
 
-    private static boolean sePuedeCobrar(Usuario usuario, double monto) {
-        return usuario != null && monto==usuario.getInscripcion().getCosto();
+    public boolean sePuedeCobrar(Usuario usuario, String monto) {
+        return usuario != null && Double.parseDouble(monto)==usuario.getInscripcion().getCosto();
     }
 
-    private String validarPago(Usuario usuario, String modoPago) {
+    public String confirmarPago(Usuario usuario, String modoPago) {
         String notificacion;
         if(usuario.getInscripcion().pagar(modoPago)){
             notificacion="Pago Guardado";

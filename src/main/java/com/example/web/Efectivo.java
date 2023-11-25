@@ -16,4 +16,5 @@ public class Efectivo {
     public void setPagado(boolean pagado) {
         this.pagado = pagado;
     }
+
 }

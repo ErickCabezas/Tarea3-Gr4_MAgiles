@@ -5,15 +5,19 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProcesoPagoTest {
     private InterfaceTarjeta interfacePago;
-    private ProcesoPago procesar;
+    private ProcesoPago procesar, pagoEfectivo;
+
 
     @Before
     public void setUp(){
         interfacePago = Mockito.mock(InterfaceTarjeta.class);
         procesar= new ProcesoPago(interfacePago);
+        pagoEfectivo = new ProcesoPago(300);
+
 
     }
     @Test
@@ -42,6 +46,11 @@ public class ProcesoPagoTest {
         Mockito.when(interfacePago.cancelarPago(Mockito.any())).thenReturn(
                 new RespuestaTarjeta(RespuestaTarjeta.EstadoDeSolicitud.ERROR));
         assertFalse(procesar.cancelarPagoTarjeta(true));
+    }
+
+    @Test(timeout = 50)
+    public void given_respuesta_when_pagoEfectivo_then_timeout() {
+        assertTrue(pagoEfectivo.pagoEfectivo());
     }
 
 }

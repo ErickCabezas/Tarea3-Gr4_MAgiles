@@ -42,10 +42,13 @@ public class InscripcionCurso extends Inscripcion {
     public boolean pagar(String modoPago) {
         if(modoPago.equalsIgnoreCase("efectivo")){
             procesoPago=new ProcesoPago(this.getCosto());
-            return procesoPago.PagoEfectivo();
-        }else{
+            return procesoPago.pagoEfectivo();
+        }
+        if(modoPago.equalsIgnoreCase("tarjeta")){
+            procesoPago=new ProcesoPago(this.getCosto());
             return true;
         }
+            return false;
     }
 
 }
