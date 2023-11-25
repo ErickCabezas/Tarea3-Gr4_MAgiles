@@ -6,6 +6,9 @@ public class InscripcionCurso extends Inscripcion {
     private String fechaInicio, fechaFin;
     private double costo;
 
+    private ProcesoPago procesoPago;
+
+
     public InscripcionCurso(int aula, String fechaInicio, String fechaFin, String horario, double costo, int nivel) {
         super.nivel = nivel;
         super.horario = horario;
@@ -20,7 +23,7 @@ public class InscripcionCurso extends Inscripcion {
         if (super.nivel == 0) {
             return "Dar prueba de ubicación";
         } else {
-            return "Estudiante inscrito-" + pagar();
+            return "Estudiante inscrito pagar $"+ getCosto();
         }
     }
 
@@ -32,7 +35,12 @@ public class InscripcionCurso extends Inscripcion {
         this.profesor = profesor;
     }
 
-    public String pagar() {
-        return "Total del curso" + this.getCosto();
+    public boolean pagar(String modoPago) {
+        if(modoPago.equalsIgnoreCase("efectivo")){
+            procesoPago=new ProcesoPago(this.getCosto());
+            return procesoPago.PagoEfectivo();
+        }else{
+            return true;
+        }
     }
 }
