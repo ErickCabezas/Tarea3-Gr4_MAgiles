@@ -17,13 +17,16 @@ public class CuentaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
         String opcion=solicitud.getParameter("opc");
+        if(opcion.equalsIgnoreCase("cobrar")){
+            respuesta.sendRedirect("cobrar.jsp");
+        }
         if(opcion.equalsIgnoreCase("cerrar")){
             respuesta.sendRedirect("index.jsp");
-        }else{
+        }
+        if(opcion.equalsIgnoreCase("calificar")){
             respuesta.sendRedirect("calificar.jsp");
         }
     }
-
 
     @Override
     protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {

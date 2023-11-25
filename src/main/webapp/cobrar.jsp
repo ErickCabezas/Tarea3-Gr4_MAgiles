@@ -17,6 +17,7 @@
     <h1 id="titulo">Datos del Estudiante:</h1>
     <form action="CobrarServlet" method="POST">
         <p><label>Usuario del estudiante:</label><input type="text" name="usuario"></p>
+        <p><label>Monto:</label><input type="text" name="monto"></p>
         <p><b>Seleccione el metodo de pago:</b></p>
         <div class="contenedorBotones">
             <select name="metodoPago">
@@ -37,17 +38,13 @@
             cobrado = (String) request.getSession().getAttribute("Notificacion");
         %>
 
-
         <%
             if (cobrado != null) {
         %>
-        <p><%=cobrado%>
-        </p>
+        <p><%=cobrado%></p>
         <br>
         <%}%>
-
     </div>
-
 </div>
 
 </body>

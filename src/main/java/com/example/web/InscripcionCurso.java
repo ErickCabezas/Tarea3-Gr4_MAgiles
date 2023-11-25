@@ -26,7 +26,7 @@ public class InscripcionCurso extends Inscripcion {
             return "Estudiante inscrito pagar $"+ getCosto();
         }
     }
-
+    @Override
     public double getCosto() {
         return costo;
     }
@@ -35,6 +35,7 @@ public class InscripcionCurso extends Inscripcion {
         this.profesor = profesor;
     }
 
+    @Override
     public boolean pagar(String modoPago) {
         if(modoPago.equalsIgnoreCase("efectivo")){
             procesoPago=new ProcesoPago(this.getCosto());
@@ -43,4 +44,5 @@ public class InscripcionCurso extends Inscripcion {
             return true;
         }
     }
+
 }

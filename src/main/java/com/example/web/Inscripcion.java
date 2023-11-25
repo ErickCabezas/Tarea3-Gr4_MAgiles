@@ -8,6 +8,12 @@ public abstract class Inscripcion {
 
     public abstract String inscribir();
 
+    public boolean pagar(String modoPago) {
+        return false;
+    }
+    public double getCosto() {
+        return 0;
+    }
 }
 
 

@@ -31,6 +31,9 @@
             <div class="grupoRadioButton">
                 <input type="radio" name="tipoUser" value="profesor"/>Profesor<br>
             </div>
+            <div class="grupoRadioButton">
+                <input type="radio" name="tipoUser" value="administrativo"/>Administrativo<br>
+            </div>
         </div>
         <div class="btnRegistrarse">
             <button type="submit"> Registrarse</button>

@@ -48,26 +48,38 @@
 
 
     <div class="contenedorBotones">
+
+
+        <%
+            if (usuario.getModoUsuario().equals("profesor")) {
+        %>
         <div class="sinColumna">
-            <%
-                if (usuario.getModoUsuario().equals("profesor")) {
-            %>
             <form action="CuentaServlet" method="GET">
                 <button type="submit" name="opc" value="calificar"> calificar</button>
             </form>
-            <%} else {%>
-            <div class="IncribirseEnCurso">
-                <form action="CuentaServlet" method="POST">
-                    <button type="submit"> Inscribirse en curso</button>
-                </form>
-            </div>
-            <%}%>
-            <div class="CerrarSesion">
-                <br>
-                <form action="CuentaServlet" method="GET">
-                    <button type="submit" name="opc" value="cerrar"> cerrar sesión</button>
-                </form>
-            </div>
+        </div>
+        <%
+        } else {
+            if (usuario.getModoUsuario().equals("administrativo")) {
+        %>
+        <div class="cobrar">
+            <form action="CuentaServlet" method="GET">
+                <button type="submit" name="opc" value="cobrar"> cobrar</button>
+            </form>
+        </div>
+        <%} else {%>
+        <div class="IncribirseEnCurso">
+            <form action="CuentaServlet" method="POST">
+                <button type="submit"> Inscribirse en curso</button>
+            </form>
+        </div>
+        <%}%>
+        <%}%>
+        <div class="CerrarSesion">
+            <br>
+            <form action="CuentaServlet" method="GET">
+                <button type="submit" name="opc" value="cerrar"> cerrar sesión</button>
+            </form>
         </div>
     </div>
 

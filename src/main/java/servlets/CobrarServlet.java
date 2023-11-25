@@ -1,5 +1,6 @@
 package servlets;
 
+import com.example.web.InscripcionCurso;
 import com.example.web.Usuario;
 
 import javax.servlet.ServletException;
@@ -15,25 +16,38 @@ public class CobrarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
         String nombreUsuario= solicitud.getParameter("usuario");
+        double monto= Double.parseDouble(solicitud.getParameter("monto"));
         String modoPago= solicitud.getParameter("metodoPago");
         Usuario usuario=LoginServlet.gestor_usuario.buscarUsuario(nombreUsuario);
         String notificacion="";
-        if(usuario!=null){
+        if(sePuedeCobrar(usuario, monto)){
             //misma linea en distintos if's
             if(modoPago.equalsIgnoreCase("0")){
                 notificacion="Seleccione modo de pago";
-                respuesta.sendRedirect("cobrar.jsp");
             }else {
-                usuario.getInscripcion().nivel=2;
-                notificacion="Usuario calificado";
-                respuesta.sendRedirect("calificar.jsp");
+                notificacion = validarPago(usuario, modoPago);
             }
         }else{
-            notificacion="no existe el estudiante con ese usuario";
-            respuesta.sendRedirect("calificar.jsp");
+            notificacion="no existe el estudiante con ese usuario o el monto es incorrecto";
         }
         pasarNotificacion(solicitud,notificacion);
+        respuesta.sendRedirect("cobrar.jsp");
     }
+
+    private static boolean sePuedeCobrar(Usuario usuario, double monto) {
+        return usuario != null && monto==usuario.getInscripcion().getCosto();
+    }
+
+    private String validarPago(Usuario usuario, String modoPago) {
+        String notificacion;
+        if(usuario.getInscripcion().pagar(modoPago)){
+            notificacion="Pago Guardado";
+        }else{
+            notificacion="Pago no realizado";
+        }
+        return notificacion;
+    }
+
     public void pasarNotificacion(HttpServletRequest solicitud, String notificacion){
         HttpSession miSesion = solicitud.getSession();
         miSesion.setAttribute("Notificacion", notificacion);

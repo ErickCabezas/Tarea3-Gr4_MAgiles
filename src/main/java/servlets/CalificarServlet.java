@@ -25,17 +25,16 @@ public class CalificarServlet extends HttpServlet {
 
             if(nivel==0){
                 notificacion="Seleccione nivel según la calificación";
-                respuesta.sendRedirect("calificar.jsp");
             }else {
                 usuario.getInscripcion().nivel=nivel;
                 notificacion="Usuario calificado";
-                respuesta.sendRedirect("calificar.jsp");
             }
         }else{
             notificacion="no existe el estudiante con ese usuario";
-            respuesta.sendRedirect("calificar.jsp");
+
         }
         pasarNotificacion(solicitud,notificacion);
+        respuesta.sendRedirect("calificar.jsp");
     }
     public void pasarNotificacion(HttpServletRequest solicitud, String notificacion){
         HttpSession miSesion = solicitud.getSession();

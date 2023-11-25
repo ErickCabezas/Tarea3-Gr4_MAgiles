@@ -26,6 +26,7 @@ public class InscripcionExamen extends Inscripcion{
         }
     }
 
+
     public void asignarNivel(int nivel){
         switch (nivel){
             case 1:

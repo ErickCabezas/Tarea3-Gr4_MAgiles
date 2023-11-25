@@ -36,7 +36,7 @@ public class MatriculaServlet extends HttpServlet {
                 respuesta.sendRedirect("matricula.jsp");
             }else {
                 usuario.setInscripcion(new InscripcionCurso(asignarAula(horario), fechaInicio, fechaFin, horario, 300, nivel));
-                textoNotificacion=usuario.getInscripcion().inscribir();
+                textoNotificacion = getNotificacionInscripcion(usuario);
                 respuesta.sendRedirect("matricula.jsp");
             }
             miSesion.setAttribute("noti", textoNotificacion);
@@ -46,6 +46,16 @@ public class MatriculaServlet extends HttpServlet {
         }
 
     }
+
+    public String getNotificacionInscripcion(Usuario usuario) {
+        String textoNotificacion;
+        textoNotificacion= usuario.getInscripcion().inscribir()
+                +"\n Realice el pago del curso"
+                + " \n en las oficinas de CAMBRIGE "
+                + "\npara finalizar su inscripción ";
+        return textoNotificacion;
+    }
+
     public int asignarAula(String horario){
         int aulaInscripcion=0;
         if (horario.equalsIgnoreCase("7-9")) {
