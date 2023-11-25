@@ -31,11 +31,17 @@ public class Gestor_Usuario {
 
     public String agregarUsuario(Usuario usuario) {
         String notificacion = "";
-        if (validarUsuario(usuario)) {
-            usuarios.add(usuario);
-            notificacion = "Usuario agregado";
-        } else {
-            notificacion = "Usuario no agregado";
+
+        try {
+            Thread.sleep(20);
+            if (validarUsuario(usuario)) {
+                usuarios.add(usuario);
+                notificacion = "Usuario agregado";
+            } else {
+                notificacion = "Usuario no agregado";
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
         return notificacion;
@@ -100,7 +106,7 @@ public class Gestor_Usuario {
         //*
         for (int i = 0; i < cedulaBase.length(); i++) {
             int digito = Character.getNumericValue(cedulaBase.charAt(i));
-            digito = getDigito(i,digito);
+            digito = getDigito(i, digito);
             suma += getSuma(digito);
         }
 
@@ -118,9 +124,9 @@ public class Gestor_Usuario {
     public int getSuma(int digito) {
         return (digito > 9) ? digito - 9 : digito;
     }
-    
+
     public int calcularResultado(int suma) {
-        
+
         return 10 - (suma % 10);
     }
 
