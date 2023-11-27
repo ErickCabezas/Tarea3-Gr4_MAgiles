@@ -40,13 +40,17 @@ public class InscripcionCurso extends Inscripcion {
 
     @Override
     public boolean pagar(String modoPago) {
-        if(modoPago.equalsIgnoreCase("efectivo")){
-            procesoPago=new ProcesoPago(this.getCosto());
-            return procesoPago.pagoEfectivo();
-        }
-        if(modoPago.equalsIgnoreCase("tarjeta")){
-            procesoPago=new ProcesoPago(this.getCosto());
-            return true;
+        if(this.getCosto()==300){
+            if(modoPago.equalsIgnoreCase("efectivo")){
+                procesoPago=new ProcesoPago(this.getCosto());
+                return procesoPago.pagoEfectivo();
+            }
+            if(modoPago.equalsIgnoreCase("tarjeta")){
+                procesoPago=new ProcesoPago(this.getCosto());
+                return true;
+            }
+        }else{
+            return false;
         }
             return false;
     }
