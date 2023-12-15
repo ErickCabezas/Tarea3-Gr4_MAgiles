@@ -1,7 +1,12 @@
 package com.example.web;
 
+import entities.ConexionBD;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+
 import java.util.ArrayList;
 import java.util.List;
+import static entities.ConexionBD.entityManager;
 
 public class Gestor_Usuario {
     private List<Usuario> usuarios;
@@ -46,6 +51,43 @@ public class Gestor_Usuario {
 
 
         return notificacion;
+    }
+
+    public void insertar(entities.Usuario usuario) {
+        EntityTransaction transaction = null;
+        try {
+            EntityManager entityManager = ConexionBD.entityManager;
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            entityManager.persist(usuario);
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Este es el lugar actual donde se imprime la traza de la excepción
+
+            // Puedes agregar más detalles a la excepción y relanzarla
+            throw new RuntimeException("Error durante la transacción. Detalles: " + e.getMessage(), e);
+        }
+    }
+
+    public entities.Usuario buscar(String nombreUsuario, String contrasenia){
+        try{
+            String query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.contrasena = :constrasena";
+            entities.Usuario usuario2 = new entities.Usuario();
+            usuario2.setUsuario(nombreUsuario);
+            usuario2.setContrasena(contrasenia);
+            entities.Usuario usuarioExistente = entityManager.createQuery(query, entities.Usuario.class).setParameter("usuario", usuario2.getUsuario()).setParameter("constrasena", usuario2.getContrasena()).getSingleResult();
+            if(usuarioExistente != null){
+                return usuarioExistente;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private boolean validarUsuario(Usuario usuario) {

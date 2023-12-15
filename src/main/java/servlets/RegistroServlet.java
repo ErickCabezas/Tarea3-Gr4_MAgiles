@@ -1,18 +1,22 @@
 package servlets;
 
-import com.example.web.Usuario;
+import com.example.web.Gestor_Usuario;
+//import com.example.web.Usuario;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import entities.Usuario;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name="RegistroServlet", urlPatterns = {"/RegistroServlet"})
+@WebServlet(name = "RegistroServlet", urlPatterns = {"/RegistroServlet"})
 public class RegistroServlet extends HttpServlet {
+
+    Gestor_Usuario gestorUsuario = new Gestor_Usuario();
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -20,23 +24,26 @@ public class RegistroServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String opcion=req.getParameter("mostrar");
-        if(opcion!=null){
-            HttpSession misesion= req.getSession();
+        String opcion = req.getParameter("mostrar");
+        if (opcion != null) {
+            HttpSession misesion = req.getSession();
             misesion.setAttribute("listaUsuarios", LoginServlet.gestor_usuario.getUsuarios());
             resp.sendRedirect("mostrarUsuarios.jsp");
-        }else{
+        } else {
             resp.sendRedirect("index.jsp");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
-        HttpSession misesion= solicitud.getSession();
-        misesion.setAttribute("registro", RegistrarUsuario(solicitud));
+        Usuario usuario = registrarUsuario(solicitud);
+        HttpSession misesion = solicitud.getSession();
+        misesion.setAttribute("registro", usuario);
+        gestorUsuario.insertar(usuario);
         respuesta.sendRedirect("registro.jsp");
     }
-    public String RegistrarUsuario(HttpServletRequest solicitud){
+
+    public Usuario registrarUsuario(HttpServletRequest solicitud) {
 
         String nombre = solicitud.getParameter("nombre");
         String apellido = solicitud.getParameter("apellido");
@@ -44,15 +51,9 @@ public class RegistroServlet extends HttpServlet {
         String correo = solicitud.getParameter("correo");
         String modo = solicitud.getParameter("tipoUser");
         String telefono = solicitud.getParameter("telf");
-        String usuario= solicitud.getParameter("user");
+        String usuario = solicitud.getParameter("user");
         String contrasenia = solicitud.getParameter("contrasenia");
 
-        return LoginServlet.gestor_usuario.agregarUsuario(
-                new Usuario(nombre,apellido,cedula,correo,modo,telefono,usuario,contrasenia));
+        return new Usuario(usuario, contrasenia, nombre, apellido, cedula, correo, Integer.parseInt(telefono), modo, null);
     }
-
-
-
-
-
 }

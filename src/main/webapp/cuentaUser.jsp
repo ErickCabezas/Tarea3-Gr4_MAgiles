@@ -1,4 +1,4 @@
-<%@ page import="com.example.web.Usuario" %><%--
+<%@ page import="entities.Usuario" %><%--
   Created by IntelliJ IDEA.
   User: erick cabezas
   Date: 11/11/2023
@@ -19,13 +19,14 @@
     <h1>BIENVENIDO A CAMBRIGE</h1>
     <%
         Usuario usuario = (Usuario) request.getSession().getAttribute("loginUser");
+        System.out.println(usuario);
     %>
     <div class="containerPrincipal">
         <div class="columna izquierda">
             <p class="label"><b> Modo :</b><%=usuario.getModoUsuario()%>
             </p>
             <br>
-            <p class="label"><b> ci :</b><%=usuario.getCedula()%>
+            <p class="label"><b> ci :</b><%=usuario.getCi()%>
             </p>
             <br>
             <p class="label"><b> correo :</b><%=usuario.getCorreo()%>
@@ -40,7 +41,7 @@
             <p class="label"><b> telefono :</b><%=usuario.getTelefono()%>
             </p>
             <br>
-            <p class="label"><b> Nivel :</b><%=usuario.getInscripcion().nivel%>
+            <p class="label"><b> Nivel :</b><%//=usuario.getInscripcionByInscripcion().getNivel()%>
             </p>
             <br>
         </div>

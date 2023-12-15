@@ -1,15 +1,18 @@
 package servlets;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import entities.Usuario;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 import com.example.web.Gestor_Usuario;
-import com.example.web.Usuario;
+//import com.example.web.Usuario;
+
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
@@ -26,10 +29,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest solicitud, HttpServletResponse respuesta) throws ServletException, IOException {
         String nombreUsuario = solicitud.getParameter("user");
         String contrasenia = solicitud.getParameter("contrasenia");
-        Usuario usuario = gestor_usuario.buscarUsuario(nombreUsuario);
-        boolean credencialesValidas = esCredencialesValidas(usuario, nombreUsuario, contrasenia);
+        entities.Usuario usuario = gestor_usuario.buscar(nombreUsuario, contrasenia);
+        //boolean credencialesValidas = esCredencialesValidas(usuario, nombreUsuario, contrasenia);
         HttpSession miSesion = solicitud.getSession();
-        if (credencialesValidas) {
+        if (usuario != null) {
             miSesion.setAttribute("loginUser", usuario);
             LoginServlet.usuario = usuario;
             respuesta.sendRedirect("cuentaUser.jsp");
@@ -40,7 +43,5 @@ public class LoginServlet extends HttpServlet {
 
     }
 
-    public boolean esCredencialesValidas(Usuario usuario, String nombreUsuario, String contrasenia) {
-        return usuario != null && (usuario.getLogin().validarCredenciales(nombreUsuario, contrasenia));
-    }
+
 }

@@ -5,7 +5,12 @@
              version="3.0">
   <persistence-unit name="default">
 
-      <class>entity.UsuarioEntity</class>
+      <class>entities.Incripcionexamen</class>
+      <class>entities.Inscripcion</class>
+      <class>entities.Inscripcioncurso</class>
+      <class>entities.Usuario</class>
+      <class>entities.ConexionBD</class>
+
       <properties>
           <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/proyectoma"/>
           <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

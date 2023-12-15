@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entities.Usuario" %><%--
   Created by IntelliJ IDEA.
   User: erick cabezas
   Date: 11/11/2023
@@ -48,7 +48,10 @@
     <div class="txtAgregado">
         <%
             String agregado = ".....";
-            agregado = (String) request.getSession().getAttribute("registro");
+            if((Usuario)request.getSession().getAttribute("registro") != null){
+                Usuario usuario = (Usuario)request.getSession().getAttribute("registro");
+                agregado = usuario.getUsuario();
+            }
         %>
 
 
